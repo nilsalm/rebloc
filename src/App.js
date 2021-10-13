@@ -2,7 +2,7 @@ import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import increment from "./actions/increment";
 import decrement from "./actions/decrement";
-import { addBlock, createGenesisBlock } from "./reducers/blockchain";
+import { addBlock, createGenesisBlock } from "./component/blockchain";
 
 /**
  * *** REDUX ***
