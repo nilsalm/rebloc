@@ -1,4 +1,4 @@
-const addBlockAction = (data) => {
+const addBlockAction = (data = {}) => {
   return {
     type: "ADD_BLOCK",
     payload: data,

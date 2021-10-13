@@ -1,6 +1,5 @@
 import sha256 from "crypto-js/sha256";
 
-// TODO add chain to redux
 // TODO make colorful aka visualize
 
 // BLOCK
@@ -27,7 +26,7 @@ const calculateHash = (index, timestamp, data, previousHash) => {
 };
 
 // BLOCKCHAIN
-const createGenesisBlock = () => {
+export const createGenesisBlock = () => {
   return createNewBlock(0, "12/10/2021", "Genesis block", "0");
 };
 

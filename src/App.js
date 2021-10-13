@@ -16,22 +16,32 @@ function App() {
   const chain = useSelector((state) => state.chain);
   const dispatch = useDispatch();
 
-  // USAGE
-  // let myChain = [createGenesisBlock()];
-  // console.log(myChain);
-  // addBlock(myChain, { data: "bla" });
-  // console.log(myChain);
-  // addBlock(myChain, { data: "blubi" });
   console.log(chain);
+
+  const blockText = (b, idx) => {
+    // let myDate = new Date(b.timestamp * 1000); // jag lämnar det ifall vi vill visa datum
+    return <p key={`${idx}`}>{`${b.hash} ${b.data.cnt}`}</p>;
+  };
+  const showChain = (c) => {
+    return c.map((block, idx) => blockText(block, idx));
+  };
 
   return (
     <div className="App">
       <h1>Counter {counter}</h1>
       <button onClick={() => dispatch(increment())}>+</button>
       <button onClick={() => dispatch(decrement())}>-</button>
-      <button onClick={() => dispatch(addBlockAction({ data: "lalal" }))}>
-        MINE
+      <button
+        onClick={() =>
+          dispatch(addBlockAction({ data: "lalal", cnt: counter }))
+        }
+      >
+        <h1>⛏</h1>
       </button>
+      <div>
+        <>{showChain(chain)}</>
+      </div>
+      <h2>{chain[counter].hash}</h2>
     </div>
   );
 }

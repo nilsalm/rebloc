@@ -1,12 +1,6 @@
-import { addBlock } from "../component/blockchain";
+import { addBlock, createGenesisBlock } from "../component/blockchain";
 
-const initialState = {
-  index: 0,
-  timestamp: Math.floor(new Date().getTime() / 1000.0),
-  data: "genesis",
-  previousHash: 0,
-  hash: 0,
-};
+const initialState = createGenesisBlock();
 
 const blockReducer = (state = [initialState], action) => {
   switch (action.type) {
