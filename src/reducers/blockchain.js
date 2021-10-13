@@ -1,11 +1,12 @@
 import sha256 from "crypto-js/sha256";
 
-// TODO run code in app without visualization
 // TODO add chain to redux
 // TODO make colorful aka visualize
 
 // BLOCK
-const createNewBlock = (index, timestamp, data, previousHash) => {
+const createNewBlock = (index, data, previousHash) => {
+  const timestamp = Math.floor(new Date().getTime() / 1000.0);
+
   return {
     index: index,
     timestamp: timestamp,
@@ -34,9 +35,9 @@ const getLatestBlock = (chain) => {
   return chain[chain.length - 1];
 };
 
-export const addBlock = (chain, idx, date, data) => {
+export const addBlock = (chain, data) => {
   let previousHash = getLatestBlock(chain).hash;
-  let newBlock = createNewBlock(idx, date, data, previousHash);
+  let newBlock = createNewBlock(chain.length, data, previousHash);
   chain.push(newBlock);
 };
 

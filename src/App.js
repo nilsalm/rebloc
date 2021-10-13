@@ -18,9 +18,9 @@ function App() {
   // USAGE
   let myChain = [createGenesisBlock()];
   console.log(myChain);
-  addBlock(myChain, 1, "date", { data: "bla" });
+  addBlock(myChain, { data: "bla" });
   console.log(myChain);
-  addBlock(myChain, 2, "datee", { data: "blubi" });
+  addBlock(myChain, { data: "blubi" });
   console.log(myChain);
 
   return (
