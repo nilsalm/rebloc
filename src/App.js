@@ -24,7 +24,8 @@ function App() {
     console.log(color);
     const block = (
       <div className="block" key={`${idx}`} style={{ background: color }}>
-        <h3>{`${b.index}`}</h3>
+        <p>{`${b.index}`}</p>
+        <h3>{`${b.data.data}`}</h3>
         <p>{`${b.hash}`}</p>
       </div>
     );
@@ -44,15 +45,33 @@ function App() {
       </div>
 
       <div>
-        <h1>El Kedja</h1>
+        <div>
+          <h1>El Kedja</h1>
+        </div>
 
-        <button
-          onClick={() =>
-            dispatch(addBlockAction({ data: "lalal", cnt: counter }))
-          }
-        >
-          <strong>⛏</strong>
-        </button>
+        <div className="inputform">
+          <input
+            type="text"
+            id="datainput"
+            name="data"
+            className="textfield"
+          ></input>
+
+          <button
+            onClick={() => {
+              dispatch(
+                addBlockAction({
+                  data: document.getElementById("datainput").value,
+                })
+              );
+              document.getElementById("datainput").value = "";
+            }}
+            className="miningbutton"
+          >
+            <p>⛏</p>
+          </button>
+        </div>
+
         <div className="chain-wrapper">
           <div className="chain">
             <>{showChain()}</>
