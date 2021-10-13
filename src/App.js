@@ -20,7 +20,16 @@ function App() {
 
   const blockText = (b, idx) => {
     // let myDate = new Date(b.timestamp * 1000); // jag lämnar det ifall vi vill visa datum
-    return <p key={`${idx}`}>{`${b.hash} ${b.data.cnt}`}</p>;
+    const color = `#${b.hash.substring(0, 6)}`;
+    console.log(color);
+    const block = (
+      <div className="block" key={`${idx}`} style={{ background: color }}>
+        <h3>{`${b.index}`}</h3>
+        <p>{`${b.hash}`}</p>
+      </div>
+    );
+
+    return block;
   };
   const showChain = () => {
     return chain.map((block, idx) => blockText(block, idx));
@@ -28,20 +37,29 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Counter {counter}</h1>
-      <button onClick={() => dispatch(increment())}>+</button>
-      <button onClick={() => dispatch(decrement())}>-</button>
-      <button
-        onClick={() =>
-          dispatch(addBlockAction({ data: "lalal", cnt: counter }))
-        }
-      >
-        <h1>⛏</h1>
-      </button>
-      <div>
-        <>{showChain()}</>
+      <div style={{ margin: 30 }}>
+        <h1>Counter {counter}</h1>
+        <button onClick={() => dispatch(increment())}>+</button>
+        <button onClick={() => dispatch(decrement())}>-</button>
       </div>
-      {/* <h2>{chain[counter].hash}</h2> */}
+
+      <div>
+        <h1>El Kedja</h1>
+
+        <button
+          onClick={() =>
+            dispatch(addBlockAction({ data: "lalal", cnt: counter }))
+          }
+        >
+          <strong>⛏</strong>
+        </button>
+        <div className="chain-wrapper">
+          <div className="chain">
+            <>{showChain()}</>
+          </div>
+        </div>
+        {/* <h2>{chain[counter].hash}</h2> */}
+      </div>
     </div>
   );
 }
