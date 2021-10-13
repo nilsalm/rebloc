@@ -35,13 +35,15 @@ const getLatestBlock = (chain) => {
   return chain[chain.length - 1];
 };
 
-export const addBlock = (chain, data) => {
+export const addBlock = (currentChain, data) => {
+  const chain = currentChain;
   if (chain.length === 0) {
     chain.push(createGenesisBlock());
   }
   let previousHash = getLatestBlock(chain).hash;
   let newBlock = createNewBlock(chain.length, data, previousHash);
   chain.push(newBlock);
+  return chain;
 };
 
 // // USAGE
