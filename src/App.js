@@ -22,8 +22,8 @@ function App() {
     // let myDate = new Date(b.timestamp * 1000); // jag lämnar det ifall vi vill visa datum
     return <p key={`${idx}`}>{`${b.hash} ${b.data.cnt}`}</p>;
   };
-  const showChain = (c) => {
-    return c.map((block, idx) => blockText(block, idx));
+  const showChain = () => {
+    return chain.map((block, idx) => blockText(block, idx));
   };
 
   return (
@@ -39,9 +39,9 @@ function App() {
         <h1>⛏</h1>
       </button>
       <div>
-        <>{showChain(chain)}</>
+        <>{showChain()}</>
       </div>
-      <h2>{chain[counter].hash}</h2>
+      {/* <h2>{chain[counter].hash}</h2> */}
     </div>
   );
 }

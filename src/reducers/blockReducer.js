@@ -1,11 +1,13 @@
-import { addBlock, createGenesisBlock } from "../component/blockchain";
+import { computeNextBlock, createGenesisBlock } from "../component/blockchain";
 
 const initialState = createGenesisBlock();
 
 const blockReducer = (state = [initialState], action) => {
   switch (action.type) {
     case "ADD_BLOCK":
-      return addBlock(state, action.payload);
+      // This answer helped! https://stackoverflow.com/a/40925668/15773509
+      const newBlock = computeNextBlock(state, action.payload);
+      return [...state, newBlock];
     default:
       return state;
   }

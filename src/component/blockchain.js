@@ -34,8 +34,18 @@ const getLatestBlock = (chain) => {
   return chain[chain.length - 1];
 };
 
-export const addBlock = (currentChain, data) => {
-  const chain = currentChain;
+// API to compute the next block on a given chain from the data and return the block
+export const computeNextBlock = (chain, data) => {
+  if (chain.length === 0) {
+    chain.push(createGenesisBlock());
+  }
+  let previousHash = getLatestBlock(chain).hash;
+  let newBlock = createNewBlock(chain.length, data, previousHash);
+  return newBlock;
+};
+
+// API to compute the next block on a given chain from the data and return the chain
+export const addBlockToChain = (chain, data) => {
   if (chain.length === 0) {
     chain.push(createGenesisBlock());
   }
@@ -44,8 +54,3 @@ export const addBlock = (currentChain, data) => {
   chain.push(newBlock);
   return chain;
 };
-
-// // USAGE
-// let myChain = [createGenesisBlock()];
-// addBlock(myChain, 1, "date", { data: "bla" });
-// addBlock(myChain, 2, "datee", { data: "bla" });
