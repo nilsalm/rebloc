@@ -1,7 +1,5 @@
 import sha256 from "crypto-js/sha256";
 
-// TODO make colorful aka visualize
-
 // BLOCK
 const createNewBlock = (index, data, previousHash) => {
   const timestamp = Math.floor(new Date().getTime() / 1000.0);
