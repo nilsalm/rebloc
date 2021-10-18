@@ -1,4 +1,4 @@
-import { computeNextBlock, createGenesisBlock } from "../component/blockchain";
+import { computeNextBlock, createGenesisBlock } from "./Blockchain";
 
 const initialState = createGenesisBlock();
 

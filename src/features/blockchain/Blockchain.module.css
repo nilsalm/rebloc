@@ -1,0 +1,41 @@
+.chainwrapper {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chain {
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.block {
+  padding: 5px;
+  margin: 5px;
+  border: black;
+  border-width: 1px;
+  border-style: dotted;
+  width: 110px;
+  height: 110px;
+  font-size: 10px;
+  word-wrap: break-word;
+  box-shadow: 5px 5px 5px rgb(154, 154, 154);
+}
+
+.inputform {
+  margin: 10px;
+}
+.textfield {
+  margin: 10px;
+}
+.miningbutton {
+  border: none;
+  background-color: white;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding: 1px 24px;
+}
