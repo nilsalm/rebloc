@@ -17,11 +17,12 @@
   border: black;
   border-width: 1px;
   border-style: dotted;
-  width: 110px;
-  height: 110px;
+  width: 150px;
+  height: 150px;
   font-size: 10px;
   word-wrap: break-word;
   box-shadow: 5px 5px 5px rgb(154, 154, 154);
+  line-height: 1.1;
 }
 
 .inputform {
@@ -38,4 +39,9 @@
   text-decoration: none;
   display: inline-block;
   padding: 1px 24px;
+}
+
+.blockMeta {
+  font-size: 10px;
+  line-height: 0.8;
 }

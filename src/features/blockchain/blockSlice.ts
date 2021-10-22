@@ -49,13 +49,17 @@ const convertExtChainToChainType = (inputJson: any) => {
     chain: []
   };
 
-  inputJson.forEach(item => {
+  inputJson.forEach((item, idx) => {
     const block: BlockType = {
       timestamp: item.timestamp,
-      data: {data: item.data},
+      data: {
+        data: item.data,
+        difficulty: item.difficulty,
+        nonce: item.nonce
+      },
       hash: item.hash,
       previousHash: item.previousHash,
-      index: 0
+      index: idx
     }
     chain.chain.push(block)
   })

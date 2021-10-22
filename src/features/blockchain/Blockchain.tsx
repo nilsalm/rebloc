@@ -110,9 +110,11 @@ export function Blockchain() {
     const color = `#${b.hash.substring(6, 12)}`;
     const block = (
       <div className={styles.block} key={`${idx}`} style={{ background: color }}>
-        <p>{`${b.index}`}</p>
+        <p className={styles.blockMeta}>{`${b.index}`}</p>
         <h3>{`${b.data.data}`}</h3>
         <p>{`${b.hash}`}</p>
+        {b.data.difficulty ? <p className={styles.blockMeta}>{`Difficulty: ${b.data.difficulty}`}</p> : null}
+        {b.data.nonce ? <p className={styles.blockMeta}>{`Nonce: ${b.data.nonce}`}</p> : null}
       </div>
     );
 
