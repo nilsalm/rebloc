@@ -1,5 +1,5 @@
 import sha256 from "crypto-js/sha256";
-import { addBlock, selectChain, BlockType, ChainType } from "./blockSlice";
+import { addBlock, updateChainRemote, selectChain, BlockType, ChainType } from "./blockSlice";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import styles from './Blockchain.module.css';
 
@@ -71,22 +71,7 @@ export const computeNextBlock = (chain: ChainType, data: any) => {
 
 
 
-const addBlockRemote = async (msg: Object) => {
-  try {
-    const response = await fetch("http://localhost:3001/mine",  {
-      method: "POST", 
-      headers: {
-        'content-type' : 'application/json;charset=UTF-8',
-      },
-      body: JSON.stringify(msg),
-    });
 
-    const json = await response.json();
-    console.log(json);
-  } catch (error) {
-    console.log("error", error);
-  }
-};
 
 
 
@@ -100,10 +85,29 @@ export function Blockchain() {
 
   console.log(stateChain);
 
+  const addBlockRemote = async (msg: Object) => {
+    try {
+      const response = await fetch("http://localhost:3001/mine",  {
+        method: "POST", 
+        headers: {
+          'content-type' : 'application/json;charset=UTF-8',
+        },
+        body: JSON.stringify(msg),
+      });
+  
+      const json = await response.json();
+      console.log(json);
+  
+      dispatch(updateChainRemote(json))
+  
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
   const blockText = (b: BlockType, idx: number) => {
     // let myDate = new Date(b.timestamp * 1000); // jag lämnar det ifall vi vill visa datum
-    const color = `#${b.hash.substring(0, 6)}`;
-    console.log(color);
+    const color = `#${b.hash.substring(6, 12)}`;
     const block = (
       <div className={styles.block} key={`${idx}`} style={{ background: color }}>
         <p>{`${b.index}`}</p>
