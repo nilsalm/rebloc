@@ -6,19 +6,18 @@ import styles from './Blockchain.module.css';
 // BLOCK
 const createNewBlock = (index: number, data: any, previousHash: string) => {
   var timestamp = Math.floor(new Date().getTime());
-  
-  var winCondition = "ffff"
-  
   var myHash = calculateHash(index, timestamp, data, previousHash)
-  
-  if (winCondition !== undefined) {
-    console.log("Hash", myHash)
-    while (!myHash.startsWith(winCondition)) {
-      timestamp = Math.floor(new Date().getTime());
-      console.log("Hash", myHash)
-      myHash = calculateHash(index, timestamp, data, previousHash)
-    }
-  }
+
+  //// Adding difficulty
+  // var winCondition = "0"
+  // if (winCondition !== undefined) {
+  //   console.log("Hash", myHash)
+  //   while (!myHash.startsWith(winCondition)) {
+  //     timestamp = Math.floor(new Date().getTime());
+  //     console.log("Hash", myHash)
+  //     myHash = calculateHash(index, timestamp, data, previousHash)
+  //   }
+  // }
 
   const newBlock: BlockType = {
     index: index,
@@ -31,7 +30,6 @@ const createNewBlock = (index: number, data: any, previousHash: string) => {
 };
 
 const calculateHash = (index: number, timestamp: number, data: any, previousHash: string) => {
-  // return `e1e1e1-${index}-${timestamp}-${data}`
   let obj = {
     index: index,
     timestamp: timestamp,
@@ -55,9 +53,6 @@ const getLatestBlock = (chain: ChainType) => {
 // API to compute the next block on a given chain from the data and return the block
 export const computeNextBlock = (chain: ChainType, data: any) => {
   const c = chain.chain;
-  // if (c.length === 0) {
-  //   c.push(createGenesisBlock());
-  // }
   let previousHash = getLatestBlock(chain).hash;
   let newBlock = createNewBlock(c.length, data, previousHash);
   return newBlock;

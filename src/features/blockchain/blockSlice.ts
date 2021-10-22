@@ -1,4 +1,4 @@
-import { computeNextBlock, createGenesisBlock } from "./Blockchain";
+import { computeNextBlock } from "./Blockchain";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from '../../app/store';
 
@@ -14,13 +14,12 @@ export interface ChainType {
     chain: Array<BlockType>
 }
 
-// const genesis = createGenesisBlock()
 const genesis: BlockType = {
     index: 0,
     timestamp: 0,
     data: {data: 'genesis'},
     previousHash: '0',
-    hash: '0'
+    hash: '----'
 }
 const initialState: ChainType = {
     chain: [genesis]
