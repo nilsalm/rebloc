@@ -69,6 +69,27 @@ export const computeNextBlock = (chain: ChainType, data: any) => {
 //   return chain;
 // };
 
+
+
+const addBlockRemote = async (msg: Object) => {
+  try {
+    const response = await fetch("http://localhost:3001/mine",  {
+      method: "POST", 
+      headers: {
+        'content-type' : 'application/json;charset=UTF-8',
+      },
+      body: JSON.stringify(msg),
+    });
+
+    const json = await response.json();
+    console.log(json);
+  } catch (error) {
+    console.log("error", error);
+  }
+};
+
+
+
 export function Blockchain() {
   /**
    * TODO for chain problem: build an interface and implementation similar to the counter from counterSlice.ts
@@ -98,6 +119,8 @@ export function Blockchain() {
     return chain.chain.map((block, idx) => blockText(block, idx));
   };
 
+
+
   return (
     <div>
       <div>
@@ -124,6 +147,18 @@ export function Blockchain() {
           className="miningbutton"
         >
           <p>⛏</p>
+        </button>
+
+        <button
+          onClick={() => {
+            addBlockRemote({
+              data: (document.getElementById("datainput") as HTMLInputElement).value,
+            });
+            (document.getElementById("datainput") as HTMLInputElement).value = "";
+          }}
+          className="miningbutton"
+        >
+          <p>💎</p>
         </button>
       </div>
 
