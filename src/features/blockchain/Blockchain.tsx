@@ -104,6 +104,22 @@ export function Blockchain() {
       console.log("error", error);
     }
   };
+  
+  const getChainRemote = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/blocks",  {
+        method: "GET",
+      });
+  
+      const json = await response.json();
+      console.log(json);
+  
+      dispatch(updateChainRemote(json))
+  
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
   const blockText = (b: BlockType, idx: number) => {
     // let myDate = new Date(b.timestamp * 1000); // jag lämnar det ifall vi vill visa datum
@@ -165,6 +181,13 @@ export function Blockchain() {
           className="miningbutton"
         >
           <p>💎</p>
+        </button>
+       
+        <button
+          onClick={() => getChainRemote()}
+          className="miningbutton"
+        >
+          <p>♻️</p>
         </button>
       </div>
 

@@ -78,14 +78,7 @@ export const chainSlice = createSlice({
             state.chain = [...state.chain, newBlock];   
         },
         updateChainRemote: (state, action: PayloadAction<object>) => {
-            //  convert string[] to chaintype
-
             const newChain = convertExtChainToChainType(action.payload)
-
-            // const newChain: ChainType = {
-            //     chain: []
-            // }
-
             state.chain = newChain.chain
         }
     }
