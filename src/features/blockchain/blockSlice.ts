@@ -1,4 +1,3 @@
-import { computeNextBlock } from "./Blockchain";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from '../../app/store';
 
@@ -14,15 +13,9 @@ export interface ChainType {
   chain: Array<BlockType>
 }
 
-const genesis: BlockType = {
-  index: 0,
-  timestamp: 0,
-  data: {data: 'genesis'},
-  previousHash: '0',
-  hash: '----'
-}
+
 const initialState: ChainType = {
-  chain: [genesis]
+  chain: []
 }
 
 const convertExtChainToChainType = (inputJson: any) => {
@@ -72,11 +65,6 @@ export const chainSlice = createSlice({
     name: 'chain',
     initialState,
     reducers: {
-        // TODO think of it as an event, ex: mineOnClickAction
-        addBlock: (state, action: PayloadAction<object>) => {
-            const newBlock = computeNextBlock(state, action.payload);
-            state.chain = [...state.chain, newBlock];   
-        },
         updateChainRemote: (state, action: PayloadAction<object>) => {
             const newChain = convertExtChainToChainType(action.payload)
             state.chain = newChain.chain
@@ -84,7 +72,7 @@ export const chainSlice = createSlice({
     }
 });
 
-export const {addBlock, updateChainRemote} = chainSlice.actions;
+export const {updateChainRemote} = chainSlice.actions;
 
 export const selectChain = (state: RootState) => state.chain;
 
