@@ -1,11 +1,9 @@
 // import ReactDOM from "react-dom";
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
 import chainReducer from '../features/blockchain/blockSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     chain: chainReducer,
   },
   // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
