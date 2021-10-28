@@ -3,7 +3,9 @@
 
 Created by [@haj300](https://github.com/haj300) and [@nils-earth](https://github.com/nils-earth) in order to play around and learn about blockchain in the context of react, typescript and more.
 
-## What it does
+Download the matching backend from [Github](https://github.com/nils-earth/rebloc-backend).
+
+## 💡 What it does
 This frontend can communicate with the backend to mine and view blocks on the blockchain. It's very simple, play around and add more features if you like!
 
 You'll see two buttons and a textfield:
@@ -11,9 +13,9 @@ You'll see two buttons and a textfield:
 - ♻️ sends a HTTP Get to the backend to retrieve the updated chain
 - Enter some values into the textfield to mine them into the next block.
 
-## Getting Started
+## ⚡️ Getting Started
 Install the dependencies with `yarn install`.
 Start the frontend with `yarn start` and open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Gitmoji
+## 🥳 Gitmoji
 Check out [Gitmoji](https://gitmoji.dev/) to beautifully label your commits.
